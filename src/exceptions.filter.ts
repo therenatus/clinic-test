@@ -12,7 +12,7 @@ export class ErrorExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response: any = ctx.getResponse<Response>();
-    if (process.env.environment !== 'prod') {
+    if (process.env.environment !== 'production') {
       response
         .status(500)
         .json({ error: exception.toString(), stack: exception.stack });

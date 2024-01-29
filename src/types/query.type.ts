@@ -1,7 +1,5 @@
 export type QueryType = {
   searchNameTerm: string | null;
-  searchEmailTerm: string | null;
-  searchLoginTerm: string | null;
   sortBy: string;
   sortDirection: directionEnum;
   pageNumber: number;

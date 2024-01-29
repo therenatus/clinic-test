@@ -1,23 +1,24 @@
 import { DataSourceOptions } from 'typeorm';
-import { AdditionalEntity } from './additional/additional.entity';
-import { CategoryEntity } from './category/category.entity';
-import { DocumentEntity } from './document/document.entity';
-import { ServiceEntity } from './service/service.entity';
-import { CounterEntity } from './document/counter.entity';
+import { UserEntity } from './users/entities/user.entity';
+import { AppointmentEntity } from './appointments/entities/appointment.entity';
+import { AccountEntity } from './users/entities/account.entity';
+import { ConfirmationEntity } from './users/entities/emai-confirmation.entity';
+import { RefreshTokenEntity } from './auth/entities/token.entity';
+import process from 'node:process';
 
 const config: DataSourceOptions = {
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'law',
-  password: 'law',
-  database: 'law',
+  host: process.env.DB_URL,
+  port: parseInt(process.env.DB_PORT),
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   entities: [
-    AdditionalEntity,
-    CategoryEntity,
-    DocumentEntity,
-    ServiceEntity,
-    CounterEntity,
+    UserEntity,
+    AccountEntity,
+    ConfirmationEntity,
+    RefreshTokenEntity,
+    AppointmentEntity,
   ],
   synchronize: false,
   migrations: [__dirname + '/migrations/**/*{.ts, js}'],
